@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "devDependencies": {
+    "cldr-data": ">=25",
+    "globalize": ">=1.2.0-a <2.0.0",
+    "globalize-webpack-plugin": "^0.3.12",
+    "html-webpack-plugin": "^1.1.0",
+    "nopt": "^3.0.3",
+    "webpack": "^1.9.0",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "scripts": {
+    "start": "npm run build && open dist/index.html",
+    "clean": "rm -fvR dist .tmp-globalize-webpack",
+    "build": "webpack --config webpack-config.js",
+    "build:debug": "node --inspect --debug-brk -- ./node_modules/.bin/webpack --config webpack-config.js",
+    "prebuild": "npm run clean",
+    "prebuild:debug": "npm run clean"
+  },
+  "dependencies": {
+    "webpack": "^2.4.1"
+  }
+}
