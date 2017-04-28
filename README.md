@@ -5,7 +5,7 @@ This testcase demonstrates an issue when using globalize-webpack-plugin with an 
 
 # Running
 ```
-npm install
+yarn
 npm start
 ```
 After `npm start` finishes, a new browser window will be opened. Inspecting the dev tools console shows this error:
