@@ -1,9 +1,6 @@
 {
   "private": true,
   "devDependencies": {
-    "cldr-data": ">=25",
-    "globalize": ">=1.2.0-a <2.0.0",
-    "globalize-webpack-plugin": "^0.3.12",
     "html-webpack-plugin": "^1.1.0",
     "webpack": "^2.4.1"
   },

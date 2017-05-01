@@ -1,51 +1,33 @@
-var webpack = require('webpack');
-var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var GlobalizePlugin = require('globalize-webpack-plugin');
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    main: './app.js',
-    vendor: [
-      'globalize',
-      'globalize/dist/globalize-runtime/number',
-      'globalize/dist/globalize-runtime/currency',
-      'globalize/dist/globalize-runtime/date',
-      'globalize/dist/globalize-runtime/message',
-      'globalize/dist/globalize-runtime/plural',
-      'globalize/dist/globalize-runtime/relative-time',
-      'globalize/dist/globalize-runtime/unit'
-    ]
+    pageA: './entry',
+    pageB: './entry',
   },
   output: {
     path: path.resolve('./dist'),
     publicPath: '',
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[chunkhash:6].js'
   },
   resolve: {
     extensions: ['.js']
   },
   plugins: [
-    // new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       production: true,
       template: './index-template.html'
     }),
-    new GlobalizePlugin({
-      production: true,
-      developmentLocale: 'en',
-      supportedLocales: ['ar', 'en'],
-      messages: 'messages/[locale].json',
-      output: 'i18n/[locale].[hash].js'
-    }),
-    new CommonsChunkPlugin({
-      name: ['vendor', 'manifest'],
-      filename: '[name].[hash].js',
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      filename: '[name].[chunkhash:6].js',
       minChunks: Infinity
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      async: 'shared',
+      async: true,
       children: true,
       minChunks: 2
     })
